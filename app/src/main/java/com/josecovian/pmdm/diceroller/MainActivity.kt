@@ -28,12 +28,23 @@ class MainActivity : AppCompatActivity() {
         // Create new Dice object with 6 sides and roll it
         val dice = Dice(6)
         val diceRoll = dice.roll()
+        val diceRoll2 = dice.roll()
 
-        // Find the ImageView in the layout
+        // Find the ImageView in the layout for dice 1 & 2
         val diceImage: ImageView = findViewById(R.id.imageView)
+        val diceImage2: ImageView = findViewById(R.id.imageView2)
 
+        // Let's play!
+        rollPaint(diceRoll,diceImage)
+        rollPaint(diceRoll2,diceImage2)
+    }
+
+    /**
+     * Paint dices according to the ramdon numbers
+     */
+    private fun rollPaint (valor: Int, image: ImageView) {
         // Determine which drawable resource ID to use based on the dice roll
-        val drawableResource = when (diceRoll) {
+        val drawableResource = when (valor) {
             1 -> R.drawable.dice_1
             2 -> R.drawable.dice_2
             3 -> R.drawable.dice_3
@@ -42,9 +53,9 @@ class MainActivity : AppCompatActivity() {
             else -> R.drawable.dice_6
         }
         // Update the ImageView with the correct drawable resource ID
-        diceImage.setImageResource(drawableResource)
+        image.setImageResource(drawableResource)
         // Update the content description
-        diceImage.contentDescription = diceRoll.toString()
+        image.contentDescription = valor.toString()
     }
 }
 
